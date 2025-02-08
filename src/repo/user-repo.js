@@ -26,7 +26,7 @@ class UserRepository {
         }
     }
 
-    async getById(userId){
+    async getUserById(userId){
         try {
             const user = await User.findByPk(userId,{
                 attributes: ['email', 'id'],
