@@ -47,12 +47,13 @@ class UserService {
 
     async isAuthenticated(token){
         try {
-            const isVerified = await this.verifyToken(token);
+            const isVerified = this.verifyToken(token);
+            
             if(!isVerified){
                 throw {error : 'Invalid token'}
             }
 
-            const user =  this.userRepository.getUserById(isVerified.id);
+            const user = await this.userRepository.getUserById(isVerified.id);
             if(!user){
                 throw {error : 'No user with the corresponding token'};
             }
@@ -76,6 +77,7 @@ class UserService {
     verifyToken(token){
         try {
             const response = jwt.verify(token, JWT_KEY);
+            
             return response;
         } catch (error) {
             console.log("Something went wrong in the validation of token in user-service level");
