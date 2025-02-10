@@ -25,10 +25,10 @@ const prepareAndStartServer = () => {
                 alter : true
             })
         }
-        const u1 = await User.findByPk(3);
-        const r1 = await Role.findByPk(2);
-        const response = await r1.getUsers();
-        console.log(response);
+        // const u1 = await User.findByPk(3);
+        // const r1 = await Role.findByPk(2);
+        // const response = await r1.getUsers();
+        // console.log(response);
         
         console.log(`Server started at ${PORT}`);
         

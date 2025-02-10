@@ -14,6 +14,9 @@ class UserService {
             const user = await this.userRepository.createUser(data);
             return user;
         } catch (error) {
+            if(error.name == 'ValidationError'){
+                throw error;
+            }
             console.log("Something went wrong in the creation of user-service level");
             throw error;
         }
@@ -60,6 +63,15 @@ class UserService {
             return user.id;
         } catch (error) {
             console.log("Something went wrong in the authentication of token in user-service level");
+            throw error;
+        }
+    }
+
+    async isAdmin(userId){
+        try {
+            return this.userRepository.isAdmin(userId);
+        } catch (error) {
+            console.log("Something went wrong in the isAdmin in user-service level");
             throw error;
         }
     }
